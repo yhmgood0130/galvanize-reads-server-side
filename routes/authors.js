@@ -34,23 +34,23 @@ router.get('/:id', (req,res,next) => {
 
 router.post('/new', (req,res,next) => {
   let newAuthor = req.body;
-  queries.addAuthor(newAuthor).then(authors => {
-    res.status(200).json(authors[0]);
+  queries.addAuthor(newAuthor).then(author => {
+    res.status(200).json(author[0]);
   })
 })
 
 router.put('/:id/edit', (req,res,next) => {
   let id = req.params.id;
   let edit = req.body;
-  queries.editAuthor(edit,id).then(Authors => {
-    res.status(200).json(Authors[0]);
+  queries.editAuthor(edit,id).then(author => {
+    res.status(200).json(author[0]);
   })
 })
 
 router.delete('/:id', (req,res,next) => {
   let id = req.params.id;
-  queries.deleteAuthor(id).then(Authors => {
-    res.status(200).json(Authors[0])
+  queries.deleteAuthor(id).then(author => {
+    res.status(200).json(author[0])
   })
 })
 
