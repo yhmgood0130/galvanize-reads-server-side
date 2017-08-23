@@ -20,10 +20,10 @@ module.exports = {
       .where("books.id",book_id)
   },
   addBook: book => {
-    return knex('books').insert(book).returning('*');
+    return knex('books').insert(book,'*').returning('*');
   },
   addAuthor: author => {
-    return knex('authors').insert(author).returning('*');
+    return knex('authors').insert(author,'*').returning('*');
   },
   editBook: (edit,id) => {
     return knex('books').where('id',id).update(edit).returning('*');
