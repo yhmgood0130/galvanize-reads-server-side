@@ -25,6 +25,12 @@ module.exports = {
   addAuthor: author => {
     return knex('authors').insert(author,'*');
   },
+  addBookForAuthor: book => {
+    return knex('publish').insert(book,'*');
+  },
+  addAuthorForBook: author => {
+    return knex('publish').insert(author,'*');
+  },
   editBook: (edit,id) => {
     return knex('books').where('id',id).update(edit).returning('*');
   },
@@ -36,5 +42,11 @@ module.exports = {
   },
   deleteAuthor: id => {
     return knex('authors').where('id',id).del().returning('*');
+  },
+  deleteBookForAuthor: id => {
+    return knex('publish').where('author_id',id).del().returning('*');
+  },
+  deleteAuthorForBook: id => {
+    return knex('publish').where('book_id',id).del().returning('*');
   }
 }

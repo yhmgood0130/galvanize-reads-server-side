@@ -3,12 +3,6 @@ const router = express.Router();
 const knex = require ('../db/knex')
 const queries = require ('../db/queries')
 
-// router.get('/all', (req,res,next) => {
-//   queries.getAllBooks().then(books => {
-//     res.status(200).json(books);
-//   })
-// })
-
 router.get('/all', (req,res,next) => {
   queries.getAllBooks().then(books => {
     return Promise.all(books.map(book => {
@@ -35,6 +29,16 @@ router.put('/:id/edit', (req,res,next) => {
   let edit = req.body;
   queries.editBook(edit,id).then(books => {
     res.status(200).json(books[0]);
+  })
+})
+
+router.post('/:id/editAuthors', (req,res,next) => {
+  let id = req.params.id;
+  let books = req.body;
+  queries.deleteAuthorForBook(id).then(data => {
+    queries.addAuthorForBook(authors).then(update => {
+      res.status(200).json(update[0]);
+    })
   })
 })
 
