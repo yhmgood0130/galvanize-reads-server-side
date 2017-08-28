@@ -43,6 +43,7 @@ router.put('/:id/edit', (req,res,next) => {
 router.post('/:id/editBooks', (req,res,next) => {
   let id = req.params.id;
   let books = req.body;
+  console.log(id, books);
   queries.deleteBookForAuthor(id).then(data => {
     queries.addBookForAuthor(books).then(update => {
       res.status(200).json(update[0]);
