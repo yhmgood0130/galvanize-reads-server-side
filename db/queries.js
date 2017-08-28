@@ -38,7 +38,7 @@ module.exports = {
     return knex('authors').where('id',id).update(edit).returning('*');
   },
   deleteBook: id => {
-    return knex('books').where('id',id).del().returning('*');
+    return knex('books').where('id',id).del();
   },
   deleteAuthor: id => {
     return knex('authors').where('id',id).del().returning('*');
@@ -47,6 +47,6 @@ module.exports = {
     return knex('publish').where('author_id',id).del().returning('*');
   },
   deleteAuthorForBook: id => {
-    return knex('publish').where('book_id',id).del().returning('*');
+    return knex('publish').where('book_id',id).del();
   }
 }

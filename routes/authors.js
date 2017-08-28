@@ -53,8 +53,10 @@ router.post('/:id/editBooks', (req,res,next) => {
 
 router.delete('/:id', (req,res,next) => {
   let id = req.params.id;
-  queries.deleteAuthor(id).then(author => {
-    res.status(200).json(author[0])
+  queries.deleteBookForAuthor(id).then(books => {
+      return queries.deleteAuthor(id);
+  }).then(books => {
+    res.status(200).json(books[0])
   })
 })
 
